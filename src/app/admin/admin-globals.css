@@ -1,0 +1,244 @@
+/* Admin Form Input Styles with Theme Colors */
+
+/* Text Inputs, Textareas, Select */
+.admin-input {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.05);
+  color: var(--text-color);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.admin-input::placeholder {
+  color: var(--text-color);
+  opacity: 0.5;
+}
+
+.admin-input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  background-color: rgba(255, 255, 255, 0.08);
+  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
+}
+
+.admin-input:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* Labels */
+.admin-label {
+  display: block;
+  font-size: 0.875rem;
+  font-weight: 700;
+  color: var(--text-color);
+  margin-bottom: 0.5rem;
+}
+
+/* Cards */
+.admin-card {
+  background-color: rgba(255, 255, 255, 0.05);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+}
+
+/* Buttons */
+.admin-btn-primary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 700;
+  color: white;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.admin-btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+.admin-btn-primary:active {
+  transform: translateY(0);
+}
+
+.admin-btn-primary:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.admin-btn-secondary {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: var(--text-color);
+  background-color: rgba(255, 255, 255, 0.08);
+  border: 2px solid rgba(255, 255, 255, 0.15);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(12px);
+}
+
+.admin-btn-secondary:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.admin-btn-danger {
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  color: white;
+  background-color: #ef4444;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.admin-btn-danger:hover {
+  background-color: #dc2626;
+}
+
+/* Modal Overlay */
+.admin-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(8px);
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  overflow-y: auto;
+}
+
+/* Modal Content */
+.admin-modal {
+  background-color: color-mix(in srgb, var(--background-color) 95%, transparent);
+  border: 2px solid rgba(255, 255, 255, 0.1);
+  border-radius: 1.5rem;
+  max-width: 48rem;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  backdrop-filter: blur(20px);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+}
+
+/* Modal Header */
+.admin-modal-header {
+  position: sticky;
+  top: 0;
+  background-color: color-mix(in srgb, var(--background-color) 95%, transparent);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  backdrop-filter: blur(12px);
+  z-index: 10;
+}
+
+.admin-modal-title {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-color);
+}
+
+/* Modal Body */
+.admin-modal-body {
+  padding: 1.5rem;
+}
+
+/* Modal Footer */
+.admin-modal-footer {
+  position: sticky;
+  bottom: 0;
+  background-color: rgba(255, 255, 255, 0.03);
+  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  backdrop-filter: blur(12px);
+}
+
+/* Headings */
+.admin-heading {
+  font-size: 1.875rem;
+  font-weight: 900;
+  color: var(--text-color);
+}
+
+.admin-subheading {
+  font-size: 1.125rem;
+  font-weight: 700;
+  color: var(--text-color);
+}
+
+/* Text */
+.admin-text {
+  color: var(--text-color);
+  opacity: 0.8;
+}
+
+.admin-text-muted {
+  color: var(--text-color);
+  opacity: 0.6;
+}
+
+/* Custom Scrollbar for Modals */
+.admin-modal::-webkit-scrollbar {
+  width: 10px;
+}
+
+.admin-modal::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  margin: 4px;
+}
+
+.admin-modal::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  border-radius: 10px;
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+}
+
+.admin-modal::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Custom Scrollbar for Admin Pages */
+.admin-page-scrollbar::-webkit-scrollbar {
+  width: 12px;
+}
+
+.admin-page-scrollbar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.03);
+  border-radius: 10px;
+}
+
+.admin-page-scrollbar::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  border-radius: 10px;
+  border: 3px solid rgba(0, 0, 0, 0.3);
+}
+
+.admin-page-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  transform: scale(1.05);
+}

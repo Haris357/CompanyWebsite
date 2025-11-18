@@ -1,0 +1,16 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm install:*)",
+      "Bash(npm run dev)",
+      "Bash(npm run init-firestore:*)",
+      "Bash(node check-nav-data.js)",
+      "Bash(del check-nav-data.js)",
+      "Bash(ls:*)",
+      "Bash(find:*)",
+      "Bash(awk:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}
