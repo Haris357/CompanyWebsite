@@ -199,6 +199,7 @@ export interface AboutSection {
     label: string;
     value: string;
   }[];
+  showGlobalMap?: boolean; // Toggle to show/hide the world map
   updatedAt: Timestamp;
 }
 

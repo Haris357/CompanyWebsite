@@ -8,9 +8,10 @@
   --background-color: #000000;
   --text-color: #ffffff;
 
-  /* Default fonts */
-  --heading-font: var(--font-inter), "Inter", "Inter Placeholder", sans-serif;
-  --body-font: var(--font-inter), "Inter", "Inter Placeholder", sans-serif;
+  /* Default fonts - Inter throughout the app */
+  --font-family: "Inter", "Inter Placeholder", sans-serif;
+  --heading-font: "Inter", "Inter Placeholder", sans-serif;
+  --body-font: "Inter", "Inter Placeholder", sans-serif;
 
   /* Default border radius */
   --border-radius: 0.5rem;
@@ -26,8 +27,8 @@
   --color-primary: var(--primary-color);
   --color-secondary: var(--secondary-color);
   --color-accent: var(--accent-color);
-  --font-sans: var(--font-inter);
-  --font-mono: var(--font-inter);
+  --font-sans: "Inter", "Inter Placeholder", sans-serif;
+  --font-mono: "Inter", "Inter Placeholder", sans-serif;
 }
 
 html {
@@ -35,15 +36,25 @@ html {
   scroll-padding-top: 5rem;
 }
 
+* {
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+}
+
 body {
   background: var(--background-color);
   color: var(--text-color);
-  font-family: var(--body-font);
+  font-family: "Inter", "Inter Placeholder", sans-serif;
   overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: var(--heading-font);
+  font-family: "Inter", "Inter Placeholder", sans-serif;
+}
+
+input, textarea, button, select {
+  font-family: "Inter", "Inter Placeholder", sans-serif;
 }
 
 /* Smooth scrolling with better easing for supported browsers */
@@ -53,24 +64,139 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-/* Custom scrollbar styling */
+/* Custom thin scrollbar styling - Modern minimal design */
 ::-webkit-scrollbar {
-  width: 14px;
+  width: 6px;
+  height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
-  border-radius: 10px;
+  background: transparent;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
   border-radius: 10px;
-  border: 3px solid rgba(0, 0, 0, 0.3);
   transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #a78bfa, #60a5fa);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
+  box-shadow: 0 0 10px var(--primary-color);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--primary-color) transparent;
+}
+
+/* Modern gradient backgrounds */
+@keyframes gradient-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+@keyframes glow {
+  0%, 100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* Glass morphism utility class */
+.glass {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glass-dark {
+  background: rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+/* Gradient text utility */
+.gradient-text {
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-size: 200% 200%;
+  animation: gradient-shift 3s ease infinite;
+}
+
+/* Modern card styles */
+.modern-card {
+  position: relative;
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 24px;
+  transition: all 0.3s ease;
+}
+
+.modern-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-color);
+  box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
+}
+
+/* Gradient border effect */
+.gradient-border {
+  position: relative;
+  background: rgba(0, 0, 0, 0.5);
+  border-radius: 20px;
+}
+
+.gradient-border::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 20px;
+  padding: 2px;
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+/* Animated grid background */
+.grid-bg {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+  background-position: -1px -1px;
+}
+
+/* Dot pattern background */
+.dot-pattern {
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 20px 20px;
 }

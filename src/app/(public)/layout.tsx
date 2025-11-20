@@ -31,13 +31,15 @@ export default function PublicLayout({
 
   return (
     <ThemeProvider>
-      {navigation && companyInfo && (
-        <Navigation data={navigation} companyInfo={companyInfo} />
-      )}
-      <main>{children}</main>
-      {footer && companyInfo && (
-        <Footer footerData={footer} companyData={companyInfo} />
-      )}
+      <div className="bg-black min-h-screen">
+        {navigation && companyInfo && (
+          <Navigation data={navigation} companyInfo={companyInfo} />
+        )}
+        <main className="bg-black">{children}</main>
+        {footer && companyInfo && (
+          <Footer footerData={footer} companyData={companyInfo} />
+        )}
+      </div>
     </ThemeProvider>
   );
 }

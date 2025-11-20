@@ -5,7 +5,10 @@ import "./globals.css";
 const inter = Inter({
   variable: "--font-inter",
   subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700", "800", "900"],
+  style: ["normal", "italic"],
   display: "swap",
+  fallback: ["Inter Placeholder", "sans-serif"],
 });
 
 export const metadata: Metadata = {
@@ -19,9 +22,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${inter.variable} bg-black`}>
       <body
-        className={`${inter.variable} antialiased`}
+        className={`${inter.className} antialiased bg-black`}
+        style={{ fontFamily: '"Inter", "Inter Placeholder", sans-serif' }}
       >
         {children}
       </body>
