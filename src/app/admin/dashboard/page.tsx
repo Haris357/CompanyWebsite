@@ -25,6 +25,8 @@ import ChatIcon from '@mui/icons-material/Chat';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import ScheduleIcon from '@mui/icons-material/Schedule';
 import InfoIcon from '@mui/icons-material/Info';
+import EmailIcon from '@mui/icons-material/Email';
+import SubscriptionsIcon from '@mui/icons-material/Subscriptions';
 
 interface StatCardProps {
   title: string;
@@ -124,8 +126,10 @@ export default function AdminDashboardPage() {
   const { data: teamMembers = [], loading: teamLoading } = useCollection(COLLECTIONS.TEAM);
   const { data: services } = useCollection(COLLECTIONS.SERVICES);
   const { data: faqs = [], loading: faqsLoading } = useCollection(COLLECTIONS.FAQ);
+  const { data: contactSubmissions = [], loading: contactLoading } = useCollection(COLLECTIONS.CONTACT_SUBMISSIONS);
+  const { data: newsletterSubscriptions = [], loading: newsletterLoading } = useCollection(COLLECTIONS.NEWSLETTER_SUBSCRIPTIONS);
 
-  const isLoading = projectsLoading || testimonialsLoading || teamLoading || faqsLoading;
+  const isLoading = projectsLoading || testimonialsLoading || teamLoading || faqsLoading || contactLoading || newsletterLoading;
 
   // Calculate stats
   const servicesCount = services?.[0]?.services?.length || 0;
@@ -189,7 +193,7 @@ export default function AdminDashboardPage() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.5 }}
           >
-            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(4, 1fr)' }, gap: 3 }}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: 'repeat(2, 1fr)', lg: 'repeat(3, 1fr)' }, gap: 3 }}>
               <StatCard
                 title="Projects"
                 value={projects.length}
@@ -216,6 +220,20 @@ export default function AdminDashboardPage() {
                 value={teamMembers.length}
                 href="/admin/team"
                 icon={<GroupIcon />}
+              />
+
+              <StatCard
+                title="Contact Submissions"
+                value={contactSubmissions.length}
+                href="/admin/contact-submissions"
+                icon={<EmailIcon />}
+              />
+
+              <StatCard
+                title="Newsletter Subscribers"
+                value={newsletterSubscriptions.length}
+                href="/admin/newsletter-subscriptions"
+                icon={<SubscriptionsIcon />}
               />
             </Box>
           </motion.div>

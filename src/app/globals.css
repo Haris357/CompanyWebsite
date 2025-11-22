@@ -27,6 +27,11 @@
   --color-primary: var(--primary-color);
   --color-secondary: var(--secondary-color);
   --color-accent: var(--accent-color);
+
+  /* Override Tailwind's default colors with CSS variables */
+  --color-black: var(--background-color);
+  --color-white: var(--text-color);
+
   --font-sans: "Inter", "Inter Placeholder", sans-serif;
   --font-mono: "Inter", "Inter Placeholder", sans-serif;
 }
@@ -41,8 +46,6 @@ html {
 }
 
 body {
-  background: var(--background-color);
-  color: var(--text-color);
   font-family: "Inter", "Inter Placeholder", sans-serif;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
@@ -75,13 +78,13 @@ input, textarea, button, select {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, var(--primary-color), var(--secondary-color));
+  background: var(--primary-color);
   border-radius: 10px;
   transition: all 0.3s ease;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, var(--secondary-color), var(--accent-color));
+  background: var(--secondary-color);
   box-shadow: 0 0 10px var(--primary-color);
 }
 
@@ -141,9 +144,9 @@ input, textarea, button, select {
   border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-/* Gradient text utility */
+/* Gradient text utility - Two-color gradient looks cleaner */
 .gradient-text {
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -167,7 +170,7 @@ input, textarea, button, select {
   box-shadow: 0 20px 60px rgba(139, 92, 246, 0.3);
 }
 
-/* Gradient border effect */
+/* Gradient border effect - Simplified to two colors */
 .gradient-border {
   position: relative;
   background: rgba(0, 0, 0, 0.5);
@@ -180,7 +183,7 @@ input, textarea, button, select {
   inset: 0;
   border-radius: 20px;
   padding: 2px;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color));
+  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
   -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
   -webkit-mask-composite: xor;
   mask-composite: exclude;
@@ -199,4 +202,23 @@ input, textarea, button, select {
 .dot-pattern {
   background-image: radial-gradient(circle, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 20px 20px;
+}
+
+/* Accent color utilities - Use sparingly for highlights */
+.accent-glow {
+  box-shadow: 0 0 20px var(--accent-color);
+}
+
+.accent-border {
+  border-color: var(--accent-color);
+}
+
+.accent-text {
+  color: var(--accent-color);
+}
+
+/* Hover accent - for interactive elements */
+.hover-accent:hover {
+  border-color: var(--accent-color);
+  box-shadow: 0 0 15px rgba(var(--accent-color), 0.3);
 }

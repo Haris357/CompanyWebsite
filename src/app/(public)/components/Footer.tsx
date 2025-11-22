@@ -2,7 +2,10 @@
 
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { FooterSection, CompanyInfo } from '@/types';
+import { FooterSection, CompanyInfo, COLLECTIONS, NewsletterSubscription } from '@/types';
+import { useFirestore } from '@/hooks/useFirestore';
+import { useState } from 'react';
+import { Timestamp } from 'firebase/firestore';
 
 interface FooterProps {
   footerData: FooterSection;
@@ -11,6 +14,40 @@ interface FooterProps {
 
 export default function Footer({ footerData, companyData }: FooterProps) {
   const currentYear = new Date().getFullYear();
+  const [email, setEmail] = useState('');
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [message, setMessage] = useState('');
+  const { create } = useFirestore<NewsletterSubscription>(COLLECTIONS.NEWSLETTER_SUBSCRIPTIONS);
+
+  const handleNewsletterSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+
+    if (!email || !email.includes('@')) {
+      setMessage('Please enter a valid email address');
+      setTimeout(() => setMessage(''), 3000);
+      return;
+    }
+
+    setIsSubmitting(true);
+    setMessage('');
+
+    try {
+      await create({
+        email,
+        createdAt: Timestamp.now(),
+      });
+
+      setMessage('Thank you for subscribing to our newsletter!');
+      setEmail('');
+      setTimeout(() => setMessage(''), 5000);
+    } catch (error) {
+      console.error('Error subscribing:', error);
+      setMessage('Failed to subscribe. Please try again.');
+      setTimeout(() => setMessage(''), 3000);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const socialIcons = [
     { name: 'facebook', url: companyData.socialMedia.facebook, icon: (
@@ -39,7 +76,7 @@ export default function Footer({ footerData, companyData }: FooterProps) {
       <div
         className="absolute top-0 left-0 right-0 h-px"
         style={{
-          background: `linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), var(--accent-color), transparent)`
+          background: `linear-gradient(90deg, transparent, var(--primary-color), var(--secondary-color), transparent)`
         }}
       />
 
@@ -137,23 +174,41 @@ export default function Footer({ footerData, companyData }: FooterProps) {
           <div className="max-w-2xl mx-auto text-center">
             <h4 className="text-2xl font-bold text-white mb-2">Stay Updated</h4>
             <p className="text-gray-400 mb-6">Subscribe to our newsletter for the latest updates</p>
-            <div className="flex flex-col sm:flex-row gap-3">
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
               <input
                 type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
-                className="flex-1 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary"
+                disabled={isSubmitting}
+                className="flex-1 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed"
               />
               <motion.button
+                type="submit"
+                disabled={isSubmitting}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-xl font-semibold text-white"
+                className="px-8 py-3 rounded-xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
                 }}
               >
-                Subscribe
+                {isSubmitting ? 'Subscribing...' : 'Subscribe'}
               </motion.button>
-            </div>
+            </form>
+            {message && (
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                className={`mt-4 text-sm ${
+                  message.includes('Thank you')
+                    ? 'text-green-400'
+                    : 'text-red-400'
+                }`}
+              >
+                {message}
+              </motion.p>
+            )}
           </div>
         </motion.div>
 

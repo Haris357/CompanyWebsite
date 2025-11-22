@@ -2,7 +2,9 @@
 
 import { motion, useInView } from 'framer-motion';
 import { useState, useRef } from 'react';
-import { ContactSection as ContactType } from '@/types';
+import { ContactSection as ContactType, COLLECTIONS, ContactFormData } from '@/types';
+import { useFirestore } from '@/hooks/useFirestore';
+import { Timestamp } from 'firebase/firestore';
 
 interface ContactSectionProps {
   data: ContactType;
@@ -20,15 +22,29 @@ export default function ContactSection({ data }: ContactSectionProps) {
   const [submitted, setSubmitted] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
+  const { create } = useFirestore<ContactFormData>(COLLECTIONS.CONTACT_SUBMISSIONS);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
-    await new Promise((resolve) => setTimeout(resolve, 1500));
-    setSubmitting(false);
-    setSubmitted(true);
-    setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
-    setTimeout(() => setSubmitted(false), 5000);
+
+    try {
+      await create({
+        name: formData.name,
+        email: formData.email,
+        subject: formData.subject,
+        message: formData.message,
+        createdAt: Timestamp.now(),
+      });
+
+      setSubmitted(true);
+      setFormData({ name: '', email: '', phone: '', subject: '', message: '' });
+      setTimeout(() => setSubmitted(false), 5000);
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   const handleChange = (

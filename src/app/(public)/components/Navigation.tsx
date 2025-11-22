@@ -21,7 +21,7 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
       setScrolled(window.scrollY > 50);
 
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'services', 'projects', 'team', 'testimonials', 'faq', 'contact'];
+      const sections = ['home', 'about', 'services', 'projects', 'testimonials', 'faq', 'contact'];
       for (const section of sections) {
         const element = document.getElementById(section);
         if (element) {

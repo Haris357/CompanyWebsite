@@ -39,17 +39,7 @@ export default function TeamSection({ data }: TeamSectionProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-20"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            className="inline-flex mb-6"
-          >
-            <div className="glass px-5 py-2 rounded-full">
-              <span className="text-sm font-semibold gradient-text">
-                Our Team
-              </span>
-            </div>
-          </motion.div>
+         
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
             {data.title}

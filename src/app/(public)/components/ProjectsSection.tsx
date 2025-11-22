@@ -27,20 +27,22 @@ export default function ProjectsSection({
       ? projects
       : projects.filter((project) => project.category === selectedCategory);
 
+  // Get first 4 projects for the grid
+  const displayProjects = filteredProjects.slice(0, 4);
+
   return (
-    <section ref={ref} className="py-32 relative overflow-hidden bg-black">
+    <section ref={ref} className="py-20 relative overflow-hidden" style={{ background: 'var(--background-color)' }}>
       {/* Background Elements */}
-      <div className="absolute inset-0 dot-pattern opacity-30" />
+      <div className="absolute inset-0 grid-bg opacity-5" />
       <motion.div
-        className="absolute top-1/4 right-1/4 w-[500px] h-[500px] rounded-full blur-[120px] opacity-15"
-        style={{ background: 'var(--secondary-color)' }}
+        className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full blur-[120px] opacity-20"
+        style={{ background: 'var(--primary-color)' }}
         animate={{
-          scale: [1, 1.3, 1],
-          x: [0, 50, 0],
-          y: [0, -30, 0],
+          scale: [1, 1.2, 1],
+          x: [0, 30, 0],
         }}
         transition={{
-          duration: 20,
+          duration: 15,
           repeat: Infinity,
           ease: "easeInOut",
         }}
@@ -54,168 +56,165 @@ export default function ProjectsSection({
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            className="inline-flex mb-6"
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.1 }}
+            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+            style={{ color: 'var(--text-color)' }}
           >
-            <div className="glass px-5 py-2 rounded-full">
-              <span className="text-sm font-semibold gradient-text">
-                Our Work
-              </span>
-            </div>
-          </motion.div>
-
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
             {title}
-          </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="text-lg md:text-xl max-w-3xl mx-auto"
+            style={{ color: 'var(--text-color)' }}
+          >
             {subtitle}
-          </p>
+          </motion.p>
         </motion.div>
 
-        {/* Category Filter */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={isInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-16"
-        >
-          {categories.map((category, index) => (
-            <motion.button
-              key={category}
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={isInView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ delay: 0.3 + index * 0.05 }}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              onClick={() => setSelectedCategory(category)}
-              className={`px-6 py-3 rounded-xl font-semibold transition-all relative overflow-hidden ${
-                selectedCategory === category ? 'text-white' : 'text-gray-400'
-              }`}
-              style={{
-                background: selectedCategory === category
-                  ? `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
-                  : 'rgba(255, 255, 255, 0.05)'
-              }}
-            >
-              {selectedCategory === category && (
-                <motion.div
-                  layoutId="categoryBg"
-                  className="absolute inset-0"
-                  style={{
-                    background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
-                  }}
-                  transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                />
-              )}
-              <span className="relative z-10">{category}</span>
-            </motion.button>
-          ))}
-        </motion.div>
-
-        {/* Projects - Full Row Cards */}
-        <div className="space-y-8">
-          {filteredProjects.map((project, index) => (
-            <motion.div
-              key={project.id}
-              initial={{ opacity: 0, y: 50 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group"
-            >
-              <div className="relative modern-card overflow-hidden cursor-pointer">
-                <div className="grid lg:grid-cols-2 gap-0">
-                  {/* Image Side */}
-                  <div className="relative h-80 lg:h-96 overflow-hidden">
-                    <Image
-                      src={project.images[0] || '/placeholder.jpg'}
-                      alt={project.title}
-                      fill
-                      className="object-cover transition-transform duration-700 group-hover:scale-110"
-                    />
-
-                    {/* Gradient Overlay */}
-                    <div
-                      className="absolute inset-0"
-                      style={{
-                        background: 'linear-gradient(to right, transparent 0%, rgba(0,0,0,0.8) 100%)'
-                      }}
-                    />
-
-                    {/* Featured Badge */}
-                    {project.featured && (
-                      <div
-                        className="absolute top-6 left-6 px-4 py-2 rounded-full font-bold text-sm text-white"
-                        style={{
-                          background: `linear-gradient(135deg, var(--accent-color), var(--primary-color))`
-                        }}
-                      >
-                        Featured
+        {/* Projects Grid - 2x2 Staggered Layout */}
+        {displayProjects.length > 0 && (
+          <div className="space-y-4 max-w-6xl mx-auto">
+            {/* First Row - Left 60%, Right 40% */}
+            <div className="grid grid-cols-1 lg:grid-cols-10 gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="lg:col-span-6 group relative overflow-hidden rounded-3xl cursor-pointer"
+                style={{ height: '500px' }}
+              >
+                <div className="glass h-full relative overflow-hidden">
+                  {displayProjects[0] && (
+                    <>
+                      <Image
+                        src={displayProjects[0].images[0] || '/placeholder.jpg'}
+                        alt={displayProjects[0].title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-black/40" />
+                      {/* Project name */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                          {displayProjects[0].title}
+                        </h3>
+                        <p className="text-sm text-white/80 mt-2">
+                          {displayProjects[0].category}
+                        </p>
                       </div>
-                    )}
-                  </div>
-
-                  {/* Content Side */}
-                  <div className="p-8 lg:p-12 flex flex-col justify-center">
-                    {/* Category */}
-                    <div className="mb-4">
-                      <span
-                        className="px-4 py-2 rounded-full text-sm font-semibold"
-                        style={{
-                          background: 'rgba(255, 255, 255, 0.05)',
-                          color: 'var(--primary-color)'
-                        }}
-                      >
-                        {project.category}
-                      </span>
-                    </div>
-
-                    {/* Title */}
-                    <h3 className="text-3xl lg:text-4xl font-bold text-white mb-4 group-hover:gradient-text transition-all duration-300">
-                      {project.title}
-                    </h3>
-
-                    {/* Description */}
-                    <p className="text-gray-400 text-lg leading-relaxed mb-8">
-                      {project.description}
-                    </p>
-
-                    {/* View Project Button */}
-                    {project.liveUrl && (
-                      <div>
-                        <motion.a
-                          href={project.liveUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          whileHover={{ scale: 1.05 }}
-                          whileTap={{ scale: 0.95 }}
-                          className="inline-flex items-center gap-3 px-6 py-3 rounded-xl font-bold text-white group/link"
-                          style={{
-                            background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
-                          }}
-                        >
-                          <span>View Project</span>
-                          <svg className="w-5 h-5 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                          </svg>
-                        </motion.a>
-                      </div>
-                    )}
-                  </div>
+                    </>
+                  )}
                 </div>
+              </motion.div>
 
-                {/* Decorative gradient on hover */}
-                <div
-                  className="absolute top-0 right-0 w-full h-full opacity-0 group-hover:opacity-10 transition-opacity duration-500 pointer-events-none"
-                  style={{
-                    background: `linear-gradient(135deg, transparent, var(--primary-color), transparent)`
-                  }}
-                />
-              </div>
-            </motion.div>
-          ))}
-        </div>
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.5 }}
+                className="lg:col-span-4 group relative overflow-hidden rounded-3xl cursor-pointer"
+                style={{ height: '500px' }}
+              >
+                <div className="glass h-full relative overflow-hidden">
+                  {displayProjects[1] && (
+                    <>
+                      <Image
+                        src={displayProjects[1].images[0] || '/placeholder.jpg'}
+                        alt={displayProjects[1].title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-black/40" />
+                      {/* Project name */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                          {displayProjects[1].title}
+                        </h3>
+                        <p className="text-sm text-white/80 mt-2">
+                          {displayProjects[1].category}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+
+            {/* Second Row - Left 40%, Right 60% */}
+            <div className="grid grid-cols-1 lg:grid-cols-10 gap-4">
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="lg:col-span-4 group relative overflow-hidden rounded-3xl cursor-pointer"
+                style={{ height: '500px' }}
+              >
+                <div className="glass h-full relative overflow-hidden">
+                  {displayProjects[2] && (
+                    <>
+                      <Image
+                        src={displayProjects[2].images[0] || '/placeholder.jpg'}
+                        alt={displayProjects[2].title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-black/40" />
+                      {/* Project name */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                          {displayProjects[2].title}
+                        </h3>
+                        <p className="text-sm text-white/80 mt-2">
+                          {displayProjects[2].category}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.6, delay: 0.7 }}
+                className="lg:col-span-6 group relative overflow-hidden rounded-3xl cursor-pointer"
+                style={{ height: '500px' }}
+              >
+                <div className="glass h-full relative overflow-hidden">
+                  {displayProjects[3] && (
+                    <>
+                      <Image
+                        src={displayProjects[3].images[0] || '/placeholder.jpg'}
+                        alt={displayProjects[3].title}
+                        fill
+                        className="object-cover transition-transform duration-700 group-hover:scale-110"
+                      />
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-black/40" />
+                      {/* Project name */}
+                      <div className="absolute bottom-0 left-0 right-0 p-8">
+                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                          {displayProjects[3].title}
+                        </h3>
+                        <p className="text-sm text-white/80 mt-2">
+                          {displayProjects[3].category}
+                        </p>
+                      </div>
+                    </>
+                  )}
+                </div>
+              </motion.div>
+            </div>
+          </div>
+        )}
 
         {/* Empty State */}
         {filteredProjects.length === 0 && (
@@ -224,9 +223,11 @@ export default function ProjectsSection({
             animate={{ opacity: 1 }}
             className="text-center py-20"
           >
-            <div className="glass-dark p-12 rounded-3xl inline-block">
+            <div className="glass p-12 rounded-3xl inline-block">
               <div className="text-6xl mb-4">🔍</div>
-              <p className="text-xl text-gray-400">No projects found in this category</p>
+              <p className="text-xl" style={{ color: 'var(--text-color)' }}>
+                No projects found in this category
+              </p>
             </div>
           </motion.div>
         )}

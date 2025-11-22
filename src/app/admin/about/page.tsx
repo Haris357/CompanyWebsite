@@ -16,6 +16,9 @@ export default function AboutPage() {
     content: '',
     image: '',
     stats: [],
+    featuresTitle: '',
+    featuresSubtitle: '',
+    features: [],
   });
 
   useEffect(() => {
@@ -59,6 +62,29 @@ export default function AboutPage() {
       ...prev,
       stats: (prev.stats || []).map((stat, i) =>
         i === index ? { ...stat, [field]: value } : stat
+      ),
+    }));
+  };
+
+  const handleAddFeature = () => {
+    setFormData((prev) => ({
+      ...prev,
+      features: [...(prev.features || []), { icon: '', title: '', description: '' }],
+    }));
+  };
+
+  const handleRemoveFeature = (index: number) => {
+    setFormData((prev) => ({
+      ...prev,
+      features: (prev.features || []).filter((_, i) => i !== index),
+    }));
+  };
+
+  const handleFeatureChange = (index: number, field: 'icon' | 'title' | 'description', value: string) => {
+    setFormData((prev) => ({
+      ...prev,
+      features: (prev.features || []).map((feature, i) =>
+        i === index ? { ...feature, [field]: value } : feature
       ),
     }));
   };
@@ -153,7 +179,7 @@ export default function AboutPage() {
 
         <div>
           <div className="flex justify-between items-center mb-2">
-            <label className="block text-sm font-medium text-gray-700">Stats</label>
+            <label className="block text-sm font-medium text-gray-700">Stats (Show on About section)</label>
             <button
               type="button"
               onClick={handleAddStat}
@@ -167,16 +193,16 @@ export default function AboutPage() {
               <div key={index} className="flex gap-3 items-start">
                 <input
                   type="text"
-                  placeholder="Label (e.g., Years Experience)"
-                  value={stat.label}
-                  onChange={(e) => handleStatChange(index, 'label', e.target.value)}
-                  className="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
-                />
-                <input
-                  type="text"
                   placeholder="Value (e.g., 10+)"
                   value={stat.value}
                   onChange={(e) => handleStatChange(index, 'value', e.target.value)}
+                  className="w-32 px-3 py-2 border border-gray-300 rounded-lg"
+                />
+                <input
+                  type="text"
+                  placeholder="Label (e.g., Years Experience)"
+                  value={stat.label}
+                  onChange={(e) => handleStatChange(index, 'label', e.target.value)}
                   className="flex-1 px-3 py-2 border border-gray-300 rounded-lg"
                 />
                 <button
@@ -186,6 +212,92 @@ export default function AboutPage() {
                 >
                   Remove
                 </button>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Features Section Header */}
+        <div className="border-t pt-6 mt-6">
+          <h2 className="text-xl font-bold text-gray-900 mb-4">Why Choose Us Section</h2>
+
+          <div className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Section Title
+              </label>
+              <input
+                type="text"
+                placeholder="Why Choose Us"
+                value={formData.featuresTitle || ''}
+                onChange={(e) => setFormData({ ...formData, featuresTitle: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-1">
+                Section Subtitle
+              </label>
+              <input
+                type="text"
+                placeholder="We combine expertise, innovation, and dedication..."
+                value={formData.featuresSubtitle || ''}
+                onChange={(e) => setFormData({ ...formData, featuresSubtitle: e.target.value })}
+                className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Features Cards */}
+        <div>
+          <div className="flex justify-between items-center mb-2">
+            <label className="block text-sm font-medium text-gray-700">Feature Cards (4 recommended)</label>
+            <button
+              type="button"
+              onClick={handleAddFeature}
+              className="px-3 py-1 text-sm bg-blue-600 text-white rounded hover:bg-blue-700"
+            >
+              Add Feature
+            </button>
+          </div>
+          <div className="space-y-4">
+            {formData.features?.map((feature, index) => (
+              <div key={index} className="p-4 border border-gray-300 rounded-lg bg-gray-50">
+                <div className="flex justify-between items-start mb-3">
+                  <span className="text-sm font-medium text-gray-700">Feature {index + 1}</span>
+                  <button
+                    type="button"
+                    onClick={() => handleRemoveFeature(index)}
+                    className="px-3 py-1 bg-red-50 text-red-600 text-sm rounded hover:bg-red-100"
+                  >
+                    Remove
+                  </button>
+                </div>
+                <div className="space-y-3">
+                  <input
+                    type="text"
+                    placeholder="Icon (emoji like 🎯 or text)"
+                    value={feature.icon}
+                    onChange={(e) => handleFeatureChange(index, 'icon', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                  <input
+                    type="text"
+                    placeholder="Title (e.g., Strategic Planning)"
+                    value={feature.title}
+                    onChange={(e) => handleFeatureChange(index, 'title', e.target.value)}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                  <textarea
+                    placeholder="Description"
+                    value={feature.description}
+                    onChange={(e) => handleFeatureChange(index, 'description', e.target.value)}
+                    rows={2}
+                    className="w-full px-3 py-2 border border-gray-300 rounded-lg"
+                  />
+                </div>
               </div>
             ))}
           </div>

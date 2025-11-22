@@ -3,7 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useDocument, useFirestore } from '@/hooks/useFirestore';
-import { COLLECTIONS, type NavigationSettings } from '@/types';
+import { COLLECTIONS, type NavigationSettings, type NavigationLink } from '@/types';
 import Image from 'next/image';
 
 export default function NavigationAdminPage() {
@@ -15,6 +15,7 @@ export default function NavigationAdminPage() {
   const { update } = useFirestore<NavigationSettings>(COLLECTIONS.NAVIGATION);
 
   const [logo, setLogo] = useState('');
+  const [links, setLinks] = useState<NavigationLink[]>([]);
   const [uploading, setUploading] = useState(false);
   const [saving, setSaving] = useState(false);
   const [message, setMessage] = useState('');
@@ -22,6 +23,7 @@ export default function NavigationAdminPage() {
   useEffect(() => {
     if (navData) {
       setLogo(navData.logo || '');
+      setLinks(navData.links || []);
     }
   }, [navData]);
 
@@ -62,19 +64,41 @@ export default function NavigationAdminPage() {
     }
   };
 
+  const handleAddLink = () => {
+    const newLink: NavigationLink = {
+      id: `link-${Date.now()}`,
+      label: '',
+      href: '',
+      order: links.length,
+      isExternal: false,
+      openInNewTab: false,
+    };
+    setLinks([...links, newLink]);
+  };
+
+  const handleRemoveLink = (id: string) => {
+    setLinks(links.filter(link => link.id !== id));
+  };
+
+  const handleLinkChange = (id: string, field: keyof NavigationLink, value: any) => {
+    setLinks(links.map(link =>
+      link.id === id ? { ...link, [field]: value } : link
+    ));
+  };
+
   const handleSave = async () => {
     setSaving(true);
     setMessage('');
 
     try {
-      await update('main', { logo });
-      setMessage('Logo saved successfully!');
+      await update('main', { logo, links });
+      setMessage('Navigation settings saved successfully!');
       setTimeout(() => {
         router.push('/admin/dashboard');
       }, 1500);
     } catch (error) {
       console.error('Error saving:', error);
-      setMessage('Failed to save logo. Please try again.');
+      setMessage('Failed to save navigation. Please try again.');
     } finally {
       setSaving(false);
     }
@@ -219,6 +243,106 @@ export default function NavigationAdminPage() {
             <p className="mt-2 text-sm text-gray-500">
               Paste your Cloudinary or Firebase Storage URL here
             </p>
+          </div>
+        </div>
+
+        {/* Navigation Links Management */}
+        <div className="bg-white rounded-lg shadow-md p-6 mb-6">
+          <div className="flex justify-between items-center mb-4">
+            <div>
+              <h2 className="text-xl font-semibold text-gray-900">Navigation Links</h2>
+              <p className="text-sm text-gray-600 mt-1">Manage your website navigation menu</p>
+            </div>
+            <button
+              onClick={handleAddLink}
+              className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors font-medium text-sm"
+            >
+              + Add Link
+            </button>
+          </div>
+
+          <div className="space-y-4">
+            {links.map((link, index) => (
+              <div key={link.id} className="p-4 border border-gray-200 rounded-lg bg-gray-50">
+                <div className="flex justify-between items-start mb-3">
+                  <span className="text-sm font-medium text-gray-700">Link {index + 1}</span>
+                  <button
+                    onClick={() => handleRemoveLink(link.id)}
+                    className="text-red-600 hover:text-red-700 text-sm font-medium"
+                  >
+                    Remove
+                  </button>
+                </div>
+
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Label *
+                    </label>
+                    <input
+                      type="text"
+                      value={link.label}
+                      onChange={(e) => handleLinkChange(link.id, 'label', e.target.value)}
+                      placeholder="Home, About, Services..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Link / URL *
+                    </label>
+                    <input
+                      type="text"
+                      value={link.href}
+                      onChange={(e) => handleLinkChange(link.id, 'href', e.target.value)}
+                      placeholder="/about or https://..."
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div>
+                    <label className="block text-sm font-medium text-gray-700 mb-1">
+                      Order
+                    </label>
+                    <input
+                      type="number"
+                      value={link.order}
+                      onChange={(e) => handleLinkChange(link.id, 'order', parseInt(e.target.value))}
+                      className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
+                    />
+                  </div>
+
+                  <div className="flex items-center gap-4 pt-6">
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={link.isExternal}
+                        onChange={(e) => handleLinkChange(link.id, 'isExternal', e.target.checked)}
+                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <span className="ml-2 text-sm text-gray-700">External Link</span>
+                    </label>
+
+                    <label className="flex items-center">
+                      <input
+                        type="checkbox"
+                        checked={link.openInNewTab}
+                        onChange={(e) => handleLinkChange(link.id, 'openInNewTab', e.target.checked)}
+                        className="rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                      />
+                      <span className="ml-2 text-sm text-gray-700">Open in New Tab</span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            ))}
+
+            {links.length === 0 && (
+              <div className="text-center py-8 text-gray-500">
+                No navigation links yet. Click "Add Link" to create one.
+              </div>
+            )}
           </div>
         </div>
 

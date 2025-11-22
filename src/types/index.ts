@@ -199,6 +199,13 @@ export interface AboutSection {
     label: string;
     value: string;
   }[];
+  features?: {
+    icon: string; // Icon name or emoji
+    title: string;
+    description: string;
+  }[];
+  featuresTitle?: string; // Title for the features section (e.g., "Why Choose Us")
+  featuresSubtitle?: string; // Subtitle for the features section
   showGlobalMap?: boolean; // Toggle to show/hide the world map
   updatedAt: Timestamp;
 }
@@ -307,13 +314,22 @@ export const COLLECTIONS = {
   SOCIAL_MEDIA: 'socialMedia',
   SECTION_VISIBILITY: 'sectionVisibility',
   USERS: 'users',
+  CONTACT_SUBMISSIONS: 'contactSubmissions',
+  NEWSLETTER_SUBSCRIPTIONS: 'newsletterSubscriptions',
 } as const;
 
 // ==================== FORM TYPES ====================
 export interface ContactFormData {
+  id?: string;
   name: string;
   email: string;
   subject: string;
   message: string;
+  createdAt: Timestamp;
+}
+
+export interface NewsletterSubscription {
+  id?: string;
+  email: string;
   createdAt: Timestamp;
 }

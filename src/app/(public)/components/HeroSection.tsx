@@ -145,7 +145,7 @@ export default function HeroSection({ data }: HeroSectionProps) {
                   <div
                     className="absolute inset-0"
                     style={{
-                      background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color), var(--accent-color))`,
+                      background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`,
                     }}
                   />
 
@@ -192,33 +192,6 @@ export default function HeroSection({ data }: HeroSectionProps) {
             )}
           </motion.div>
 
-          {/* Stats or Features */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mt-20 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-4xl mx-auto"
-          >
-            {[
-              { label: 'Projects', value: '500+' },
-              { label: 'Clients', value: '200+' },
-              { label: 'Countries', value: '50+' },
-              { label: 'Awards', value: '25+' },
-            ].map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: 1.2 + index * 0.1 }}
-                className="glass-dark p-6 rounded-2xl text-center group hover:scale-105 transition-transform"
-              >
-                <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">
-                  {stat.value}
-                </div>
-                <div className="text-sm text-gray-400 font-medium">{stat.label}</div>
-              </motion.div>
-            ))}
-          </motion.div>
         </div>
       </div>
 

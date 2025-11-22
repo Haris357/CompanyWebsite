@@ -1,29 +1,28 @@
-/* Admin Form Input Styles with Theme Colors */
+/* Admin Form Input Styles - Fixed White Theme */
 
 /* Text Inputs, Textareas, Select */
 .admin-input {
   width: 100%;
   padding: 0.75rem 1rem;
   border-radius: 0.75rem;
-  border: 2px solid rgba(255, 255, 255, 0.1);
-  background-color: rgba(255, 255, 255, 0.05);
-  color: var(--text-color);
+  border: 2px solid #e5e7eb;
+  background-color: #ffffff;
+  color: #111827;
   font-size: 0.875rem;
   font-weight: 500;
   transition: all 0.3s ease;
-  backdrop-filter: blur(12px);
 }
 
 .admin-input::placeholder {
-  color: var(--text-color);
-  opacity: 0.5;
+  color: #9ca3af;
+  opacity: 0.7;
 }
 
 .admin-input:focus {
   outline: none;
-  border-color: var(--primary-color);
-  background-color: rgba(255, 255, 255, 0.08);
-  box-shadow: 0 0 0 3px color-mix(in srgb, var(--primary-color) 20%, transparent);
+  border-color: #3b82f6;
+  background-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
 }
 
 .admin-input:disabled {
@@ -36,17 +35,17 @@
   display: block;
   font-size: 0.875rem;
   font-weight: 700;
-  color: var(--text-color);
+  color: #111827;
   margin-bottom: 0.5rem;
 }
 
 /* Cards */
 .admin-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
   border-radius: 1.5rem;
   padding: 1.5rem;
-  backdrop-filter: blur(12px);
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
 }
 
 /* Buttons */
@@ -55,7 +54,7 @@
   border-radius: 0.75rem;
   font-weight: 700;
   color: white;
-  background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   border: none;
   cursor: pointer;
   transition: all 0.3s ease;
@@ -81,17 +80,16 @@
   padding: 0.75rem 1.5rem;
   border-radius: 0.75rem;
   font-weight: 600;
-  color: var(--text-color);
-  background-color: rgba(255, 255, 255, 0.08);
-  border: 2px solid rgba(255, 255, 255, 0.15);
+  color: #374151;
+  background-color: #f3f4f6;
+  border: 2px solid #e5e7eb;
   cursor: pointer;
   transition: all 0.3s ease;
-  backdrop-filter: blur(12px);
 }
 
 .admin-btn-secondary:hover {
-  background-color: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
+  background-color: #e5e7eb;
+  border-color: #d1d5db;
 }
 
 .admin-btn-danger {
@@ -125,35 +123,33 @@
 
 /* Modal Content */
 .admin-modal {
-  background-color: color-mix(in srgb, var(--background-color) 95%, transparent);
-  border: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: #ffffff;
+  border: 2px solid #e5e7eb;
   border-radius: 1.5rem;
   max-width: 48rem;
   width: 100%;
   max-height: 90vh;
   overflow-y: auto;
-  backdrop-filter: blur(20px);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
 }
 
 /* Modal Header */
 .admin-modal-header {
   position: sticky;
   top: 0;
-  background-color: color-mix(in srgb, var(--background-color) 95%, transparent);
-  border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: #ffffff;
+  border-bottom: 2px solid #e5e7eb;
   padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  backdrop-filter: blur(12px);
   z-index: 10;
 }
 
 .admin-modal-title {
   font-size: 1.5rem;
   font-weight: 800;
-  color: var(--text-color);
+  color: #111827;
 }
 
 /* Modal Body */
@@ -165,38 +161,35 @@
 .admin-modal-footer {
   position: sticky;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.03);
-  border-top: 2px solid rgba(255, 255, 255, 0.1);
+  background-color: #f9fafb;
+  border-top: 2px solid #e5e7eb;
   padding: 1.5rem;
   display: flex;
   align-items: center;
   justify-content: flex-end;
   gap: 0.75rem;
-  backdrop-filter: blur(12px);
 }
 
 /* Headings */
 .admin-heading {
   font-size: 1.875rem;
   font-weight: 900;
-  color: var(--text-color);
+  color: #111827;
 }
 
 .admin-subheading {
   font-size: 1.125rem;
   font-weight: 700;
-  color: var(--text-color);
+  color: #111827;
 }
 
 /* Text */
 .admin-text {
-  color: var(--text-color);
-  opacity: 0.8;
+  color: #374151;
 }
 
 .admin-text-muted {
-  color: var(--text-color);
-  opacity: 0.6;
+  color: #6b7280;
 }
 
 /* Custom Scrollbar for Modals */
@@ -205,21 +198,21 @@
 }
 
 .admin-modal::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05);
+  background: #f3f4f6;
   border-radius: 10px;
   margin: 4px;
 }
 
 .admin-modal::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   border-radius: 10px;
-  border: 2px solid rgba(0, 0, 0, 0.2);
+  border: 2px solid #f3f4f6;
   transition: all 0.3s ease;
 }
 
 .admin-modal::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #a78bfa, #60a5fa);
-  border-color: rgba(255, 255, 255, 0.1);
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
+  border-color: #e5e7eb;
 }
 
 /* Custom Scrollbar for Admin Pages */
@@ -228,17 +221,17 @@
 }
 
 .admin-page-scrollbar::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.03);
+  background: #f9fafb;
   border-radius: 10px;
 }
 
 .admin-page-scrollbar::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #8b5cf6, #3b82f6);
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
   border-radius: 10px;
-  border: 3px solid rgba(0, 0, 0, 0.3);
+  border: 3px solid #f9fafb;
 }
 
 .admin-page-scrollbar::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #a78bfa, #60a5fa);
+  background: linear-gradient(135deg, #60a5fa, #3b82f6);
   transform: scale(1.05);
 }

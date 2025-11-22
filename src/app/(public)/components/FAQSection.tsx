@@ -43,17 +43,6 @@ export default function FAQSection({ data }: FAQSectionProps) {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={isInView ? { opacity: 1, scale: 1 } : {}}
-            className="inline-flex mb-6"
-          >
-            <div className="glass px-5 py-2 rounded-full">
-              <span className="text-sm font-semibold gradient-text">
-                FAQ
-              </span>
-            </div>
-          </motion.div>
 
           <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
             {data.title}
@@ -135,8 +124,7 @@ export default function FAQSection({ data }: FAQSectionProps) {
                         <div className="px-6 md:px-8 pb-6 pl-[88px] md:pl-[104px]">
                           <div className="text-gray-400 leading-relaxed pl-6 border-l-2"
                             style={{
-                              borderColor: 'var(--primary-color)',
-                              borderOpacity: 0.3
+                              borderColor: 'var(--primary-color)'
                             }}
                           >
                             {faq.answer}

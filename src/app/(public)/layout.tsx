@@ -9,6 +9,8 @@ import {
 } from '@/types';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
+import CustomCursor from './components/CustomCursor';
+import PageLoader from './components/PageLoader';
 import ThemeProvider from '@/components/ThemeProvider';
 
 export default function PublicLayout({
@@ -31,11 +33,16 @@ export default function PublicLayout({
 
   return (
     <ThemeProvider>
-      <div className="bg-black min-h-screen">
+      <div className="min-h-screen cursor-none" style={{
+        background: 'var(--background-color)',
+        color: 'var(--text-color)'
+      }}>
+        <PageLoader />
+        <CustomCursor />
         {navigation && companyInfo && (
           <Navigation data={navigation} companyInfo={companyInfo} />
         )}
-        <main className="bg-black">{children}</main>
+        <main>{children}</main>
         {footer && companyInfo && (
           <Footer footerData={footer} companyData={companyInfo} />
         )}
