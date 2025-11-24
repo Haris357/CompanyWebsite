@@ -96,20 +96,20 @@ export default function Footer({ footerData, companyData }: FooterProps) {
         }}
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 sm:py-16 relative z-10">
         {/* Main Footer Content */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-12 mb-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-8 sm:gap-10 md:gap-12 mb-8 sm:mb-10 md:mb-12">
           {/* Company Info - Takes more space */}
           <div className="lg:col-span-4">
-            <h3 className="text-2xl font-bold gradient-text mb-4">
+            <h3 className="text-xl sm:text-2xl font-bold gradient-text mb-3 sm:mb-4">
               {companyData.name}
             </h3>
-            <p className="text-gray-400 mb-6 leading-relaxed">
+            <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6 leading-relaxed">
               {footerData.companyDescription || companyData.description}
             </p>
 
             {/* Social Media Icons */}
-            <div className="flex items-center gap-3">
+            <div className="flex items-center gap-2 sm:gap-3">
               {socialIcons.map((social) => social.url && (
                 <motion.a
                   key={social.name}
@@ -118,9 +118,9 @@ export default function Footer({ footerData, companyData }: FooterProps) {
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1, y: -3 }}
                   whileTap={{ scale: 0.95 }}
-                  className="w-10 h-10 rounded-xl glass flex items-center justify-center text-gray-400 hover:text-white transition-colors group"
+                  className="w-9 h-9 sm:w-10 sm:h-10 rounded-lg sm:rounded-xl glass flex items-center justify-center text-gray-400 hover:text-white transition-colors group"
                 >
-                  <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+                  <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="currentColor" viewBox="0 0 24 24">
                     {social.icon}
                   </svg>
                   <motion.div
@@ -137,8 +137,8 @@ export default function Footer({ footerData, companyData }: FooterProps) {
           {/* Footer Columns */}
           {footerData.columns?.map((column, index) => (
             <div key={column.id} className="lg:col-span-2">
-              <h4 className="text-white font-bold mb-4 text-lg">{column.title}</h4>
-              <ul className="space-y-3">
+              <h4 className="text-white font-bold mb-3 sm:mb-4 text-base sm:text-lg">{column.title}</h4>
+              <ul className="space-y-2 sm:space-y-3">
                 {column.links.map((link, linkIndex) => (
                   <motion.li
                     key={linkIndex}
@@ -169,26 +169,26 @@ export default function Footer({ footerData, companyData }: FooterProps) {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mb-12 p-8 rounded-3xl glass-dark"
+          className="mb-8 sm:mb-10 md:mb-12 p-6 sm:p-8 rounded-2xl sm:rounded-3xl glass-dark"
         >
           <div className="max-w-2xl mx-auto text-center">
-            <h4 className="text-2xl font-bold text-white mb-2">Stay Updated</h4>
-            <p className="text-gray-400 mb-6">Subscribe to our newsletter for the latest updates</p>
-            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3">
+            <h4 className="text-xl sm:text-2xl font-bold text-white mb-1 sm:mb-2">Stay Updated</h4>
+            <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">Subscribe to our newsletter for the latest updates</p>
+            <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-2 sm:gap-3">
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 placeholder="Enter your email"
                 disabled={isSubmitting}
-                className="flex-1 px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed"
+                className="flex-1 px-4 sm:px-6 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base bg-white/5 border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-primary disabled:opacity-50 disabled:cursor-not-allowed"
               />
               <motion.button
                 type="submit"
                 disabled={isSubmitting}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="px-8 py-3 rounded-xl font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-6 sm:px-8 py-2.5 sm:py-3 rounded-lg sm:rounded-xl text-sm sm:text-base font-semibold text-white disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
                   background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
                 }}
@@ -213,21 +213,21 @@ export default function Footer({ footerData, companyData }: FooterProps) {
         </motion.div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 border-t border-white/10">
-          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
-            <p className="text-gray-500 text-sm">
+        <div className="pt-6 sm:pt-8 border-t border-white/10">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-3 sm:gap-4">
+            <p className="text-gray-500 text-xs sm:text-sm text-center md:text-left">
               {footerData.copyrightText.replace('{year}', currentYear.toString())}
             </p>
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-4 sm:gap-6">
               <Link
                 href="/privacy"
-                className="text-gray-500 hover:text-white transition-colors text-sm"
+                className="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm"
               >
                 Privacy Policy
               </Link>
               <Link
                 href="/terms"
-                className="text-gray-500 hover:text-white transition-colors text-sm"
+                className="text-gray-500 hover:text-white transition-colors text-xs sm:text-sm"
               >
                 Terms of Service
               </Link>

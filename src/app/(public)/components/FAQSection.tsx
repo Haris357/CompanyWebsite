@@ -18,7 +18,7 @@ export default function FAQSection({ data }: FAQSectionProps) {
   };
 
   return (
-    <section ref={ref} className="py-32 relative overflow-hidden bg-black">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden bg-black">
       {/* Background Decoration */}
       <div className="absolute inset-0 dot-pattern opacity-20" />
       <motion.div
@@ -44,10 +44,10 @@ export default function FAQSection({ data }: FAQSectionProps) {
           className="text-center mb-16"
         >
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-4 sm:px-0">
             {data.title}
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4 sm:px-0">
             {data.subtitle}
           </p>
         </motion.div>
@@ -73,14 +73,14 @@ export default function FAQSection({ data }: FAQSectionProps) {
                   {/* Question */}
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full px-6 md:px-8 py-6 flex items-center justify-between text-left"
+                    className="w-full px-4 sm:px-6 md:px-8 py-4 sm:py-5 md:py-6 flex items-center justify-between text-left gap-2 sm:gap-4"
                   >
-                    <div className="flex items-center gap-4 flex-1">
+                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1 min-w-0">
                       <motion.div
                         animate={{
                           scale: isOpen ? 1.1 : 1,
                         }}
-                        className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center font-bold text-white"
+                        className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center font-bold text-sm sm:text-base text-white"
                         style={{
                           background: isOpen
                             ? `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
@@ -89,7 +89,7 @@ export default function FAQSection({ data }: FAQSectionProps) {
                       >
                         {index + 1}
                       </motion.div>
-                      <span className={`text-lg md:text-xl font-semibold pr-4 transition-colors ${
+                      <span className={`text-sm sm:text-base md:text-lg lg:text-xl font-semibold transition-colors ${
                         isOpen ? 'text-white' : 'text-gray-300'
                       }`}>
                         {faq.question}
@@ -98,14 +98,14 @@ export default function FAQSection({ data }: FAQSectionProps) {
                     <motion.div
                       animate={{ rotate: isOpen ? 180 : 0 }}
                       transition={{ duration: 0.3 }}
-                      className="flex-shrink-0 w-10 h-10 rounded-xl flex items-center justify-center"
+                      className="flex-shrink-0 w-8 h-8 sm:w-9 sm:h-9 md:w-10 md:h-10 rounded-lg sm:rounded-xl flex items-center justify-center"
                       style={{
                         background: isOpen
                           ? `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
                           : 'rgba(255, 255, 255, 0.05)'
                       }}
                     >
-                      <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <svg className="w-4 h-4 sm:w-5 sm:h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                       </svg>
                     </motion.div>
@@ -121,8 +121,8 @@ export default function FAQSection({ data }: FAQSectionProps) {
                         transition={{ duration: 0.3 }}
                         className="overflow-hidden"
                       >
-                        <div className="px-6 md:px-8 pb-6 pl-[88px] md:pl-[104px]">
-                          <div className="text-gray-400 leading-relaxed pl-6 border-l-2"
+                        <div className="px-4 sm:px-6 md:px-8 pb-4 sm:pb-5 md:pb-6 pl-12 sm:pl-16 md:pl-[88px] lg:pl-[104px]">
+                          <div className="text-gray-400 text-sm sm:text-base leading-relaxed pl-3 sm:pl-4 md:pl-6 border-l-2"
                             style={{
                               borderColor: 'var(--primary-color)'
                             }}
@@ -154,20 +154,20 @@ export default function FAQSection({ data }: FAQSectionProps) {
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.5 }}
-          className="mt-16 text-center"
+          className="mt-12 sm:mt-16 text-center px-4"
         >
-          <p className="text-gray-400 mb-6 text-lg">Still have questions?</p>
+          <p className="text-gray-400 mb-4 sm:mb-6 text-base sm:text-lg">Still have questions?</p>
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 px-8 py-4 rounded-xl font-bold text-white"
+            className="inline-flex items-center gap-2 px-6 sm:px-8 py-3 sm:py-4 rounded-xl font-bold text-sm sm:text-base text-white"
             style={{
               background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
             }}
           >
             <span>Contact Support</span>
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4 sm:w-5 sm:h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </motion.a>

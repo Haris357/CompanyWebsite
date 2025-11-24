@@ -101,15 +101,15 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
             </div>
 
             {/* Content */}
-            <div className="relative grid grid-cols-3 items-center px-6 h-16 md:h-18 gap-4">
+            <div className="relative flex items-center justify-between px-4 sm:px-6 h-16 md:h-18 gap-2 sm:gap-4">
               {/* Logo */}
-              <div className="flex justify-start">
-                <Link href="/" className="flex items-center gap-3 group">
+              <div className="flex justify-start flex-shrink-0">
+                <Link href="/" className="flex items-center gap-2 sm:gap-3 group">
                   {companyInfo.logo ? (
                     <motion.div
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
-                      className="relative h-10 w-10 rounded-xl overflow-hidden"
+                      className="relative h-8 w-8 sm:h-10 sm:w-10 rounded-xl overflow-hidden"
                     >
                       <Image
                         src={companyInfo.logo}
@@ -124,12 +124,12 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
                     <motion.div
                       whileHover={{ scale: 1.05, rotate: 5 }}
                       whileTap={{ scale: 0.95 }}
-                      className="h-10 w-10 rounded-xl flex items-center justify-center relative overflow-hidden"
+                      className="h-8 w-8 sm:h-10 sm:w-10 rounded-xl flex items-center justify-center relative overflow-hidden"
                       style={{
                         background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
                       }}
                     >
-                      <span className="font-bold text-xl text-white z-10">
+                      <span className="font-bold text-lg sm:text-xl text-white z-10">
                         {companyInfo.name.charAt(0)}
                       </span>
                       <motion.div
@@ -143,14 +143,14 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
                       />
                     </motion.div>
                   )}
-                  <span className="text-xl font-bold hidden lg:inline gradient-text">
+                  <span className="text-base sm:text-lg md:text-xl font-bold gradient-text truncate max-w-[120px] sm:max-w-none">
                     {companyInfo.name}
                   </span>
                 </Link>
               </div>
 
               {/* Centered Navigation Links */}
-              <div className="hidden md:flex items-center justify-center gap-1">
+              <div className="hidden md:flex items-center justify-center gap-1 flex-1">
                 {sortedLinks.map((link) => {
                   const isActive = activeSection === link.href.replace('#', '').replace('/', '');
                   return (
@@ -194,12 +194,12 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
               </div>
 
               {/* CTA Button */}
-              <div className="flex justify-end items-center gap-3">
+              <div className="flex justify-end items-center gap-2 sm:gap-3 flex-shrink-0">
                 <motion.a
                   href="#contact"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="hidden md:inline-flex items-center gap-2 px-6 py-2.5 rounded-xl font-semibold text-white relative overflow-hidden group"
+                  className="hidden md:inline-flex items-center gap-2 px-4 lg:px-6 py-2.5 rounded-xl font-semibold text-sm lg:text-base text-white relative overflow-hidden group"
                   style={{
                     background: `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
                   }}
@@ -223,7 +223,7 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   onClick={() => setIsOpen(!isOpen)}
-                  className="md:hidden p-2 rounded-xl text-white relative overflow-hidden"
+                  className="md:hidden p-1.5 sm:p-2 rounded-xl text-white relative overflow-hidden"
                   style={{
                     background: isOpen
                       ? `linear-gradient(135deg, var(--primary-color), var(--secondary-color))`
@@ -231,7 +231,7 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
                   }}
                 >
                   <svg
-                    className="w-6 h-6"
+                    className="w-5 h-5 sm:w-6 sm:h-6"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -279,7 +279,7 @@ export default function Navigation({ data, companyInfo }: NavigationProps) {
               animate={{ x: 0 }}
               exit={{ x: '100%' }}
               transition={{ type: 'spring', damping: 25, stiffness: 200 }}
-              className="fixed right-0 top-0 bottom-0 w-80 glass z-50 md:hidden overflow-y-auto"
+              className="fixed right-0 top-0 bottom-0 w-[85vw] max-w-sm glass z-50 md:hidden overflow-y-auto"
               style={{
                 borderLeft: '1px solid rgba(255, 255, 255, 0.1)'
               }}

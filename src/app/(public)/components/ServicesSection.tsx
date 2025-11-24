@@ -13,7 +13,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-24 relative overflow-hidden" style={{ background: 'var(--background-color)' }}>
+    <section ref={ref} className="py-12 sm:py-16 md:py-20 lg:py-24 relative overflow-hidden" style={{ background: 'var(--background-color)' }}>
       {/* Animated Background Grid */}
       <div className="absolute inset-0 grid-bg opacity-5" />
 
@@ -57,7 +57,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-4 sm:px-0"
             style={{ color: 'var(--text-color)' }}
           >
             {data.title}
@@ -67,7 +67,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 sm:px-0"
             style={{ color: 'var(--text-color)', opacity: 0.8 }}
           >
             {data.subtitle}
@@ -96,11 +96,11 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
 
                 {/* Arrow icon - top right */}
                 <motion.div
-                  className="absolute top-8 right-8 opacity-30 group-hover/card:opacity-100 transition-all duration-300 text-white"
+                  className="absolute top-4 right-4 sm:top-6 sm:right-6 md:top-8 md:right-8 opacity-30 group-hover/card:opacity-100 transition-all duration-300 text-white"
                   whileHover={{ scale: 1.1, x: 2, y: -2 }}
                 >
                   <svg
-                    className="w-8 h-8"
+                    className="w-5 h-5 sm:w-6 sm:h-6 md:w-8 md:h-8"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -115,7 +115,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
                 </motion.div>
 
                 {/* Content wrapper */}
-                <div className="relative p-8 flex items-center gap-8">
+                <div className="relative p-4 sm:p-6 md:p-8 flex flex-col sm:flex-row items-start sm:items-center gap-4 sm:gap-6 md:gap-8">
                   {/* Left side - Icon */}
                   <div className="flex-shrink-0">
                     <motion.div
@@ -141,7 +141,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
 
                       {/* Icon container */}
                       <div
-                        className="relative w-20 h-20 flex items-center justify-center text-4xl backdrop-blur-sm transition-all duration-300 group-hover/card:scale-110"
+                        className="relative w-14 h-14 sm:w-16 sm:h-16 md:w-20 md:h-20 flex items-center justify-center text-2xl sm:text-3xl md:text-4xl backdrop-blur-sm transition-all duration-300 group-hover/card:scale-110"
                         style={{
                           background: `linear-gradient(135deg,
                             color-mix(in srgb, var(--primary-color) 15%, transparent),
@@ -164,7 +164,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
                   <div className="flex-1 min-w-0">
                     {/* Title with gradient on hover */}
                     <h3
-                      className="text-2xl md:text-3xl font-bold mb-3 transition-all duration-300"
+                      className="text-xl sm:text-2xl md:text-3xl font-bold mb-2 sm:mb-3 transition-all duration-300"
                       style={{
                         color: 'var(--text-color)',
                       }}
@@ -174,7 +174,7 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
 
                     {/* Description */}
                     <p
-                      className="text-base md:text-lg leading-relaxed mb-4"
+                      className="text-sm sm:text-base md:text-lg leading-relaxed mb-3 sm:mb-4"
                       style={{
                         color: 'var(--text-color)',
                         opacity: 0.8,
@@ -208,12 +208,12 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
 
                   {/* Arrow indicator */}
                   <motion.div
-                    className="flex-shrink-0 opacity-0 group-hover/card:opacity-100 transition-all duration-300"
+                    className="hidden sm:flex flex-shrink-0 opacity-0 group-hover/card:opacity-100 transition-all duration-300"
                     animate={{ x: [0, 5, 0] }}
                     transition={{ duration: 1.5, repeat: Infinity }}
                   >
                     <svg
-                      className="w-6 h-6"
+                      className="w-5 h-5 md:w-6 md:h-6"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -282,18 +282,18 @@ export default function ServicesSection({ data }: ServicesSectionProps) {
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.5 }}
-          className="mt-20 text-center"
+          className="mt-12 sm:mt-16 md:mt-20 text-center px-4"
         >
-          <p className="text-gray-400 mb-6">Need something custom?</p>
+          <p className="text-sm sm:text-base text-gray-400 mb-4 sm:mb-6">Need something custom?</p>
           <motion.a
             href="#contact"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-2 glass px-8 py-4 rounded-2xl font-semibold text-white group"
+            className="inline-flex items-center gap-2 glass px-6 sm:px-8 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-semibold text-sm sm:text-base text-white group"
           >
             <span>Let's talk about your project</span>
             <motion.svg
-              className="w-5 h-5"
+              className="w-4 h-4 sm:w-5 sm:h-5"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"

@@ -14,7 +14,7 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section ref={ref} className="py-32 relative overflow-hidden bg-black">
+    <section ref={ref} className="py-12 sm:py-16 md:py-24 lg:py-32 relative overflow-hidden bg-black">
       {/* Background */}
       <div className="absolute inset-0 grid-bg opacity-20" />
       <motion.div
@@ -50,30 +50,30 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
             </div>
           </motion.div>
 
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 px-4 sm:px-0">
             {data.title}
           </h2>
-          <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+          <p className="text-base sm:text-lg md:text-xl text-gray-400 max-w-3xl mx-auto px-4 sm:px-0">
             {data.subtitle}
           </p>
         </motion.div>
 
         {/* Testimonials Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
           {data.testimonials?.map((testimonial, index) => (
             <motion.div
               key={testimonial.id}
               initial={{ opacity: 0, y: 40 }}
               animate={isInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="group modern-card p-8"
+              className="group modern-card p-4 sm:p-6 md:p-8"
             >
               {/* Stars */}
-              <div className="flex items-center gap-1 mb-6">
+              <div className="flex items-center gap-1 mb-4 sm:mb-6">
                 {[...Array(5)].map((_, i) => (
                   <svg
                     key={i}
-                    className="w-5 h-5"
+                    className="w-4 h-4 sm:w-5 sm:h-5"
                     style={{
                       color: i < testimonial.rating ? 'var(--accent-color)' : 'rgba(255, 255, 255, 0.2)'
                     }}
@@ -86,13 +86,13 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
               </div>
 
               {/* Quote */}
-              <p className="text-gray-300 mb-8 leading-relaxed text-lg">
+              <p className="text-gray-300 mb-6 sm:mb-8 leading-relaxed text-sm sm:text-base md:text-lg">
                 "{testimonial.quote}"
               </p>
 
               {/* Author */}
-              <div className="flex items-center gap-4 pt-6 border-t border-white/10">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden ring-2 ring-white/10 group-hover:ring-primary/50 transition-all">
+              <div className="flex items-center gap-3 sm:gap-4 pt-4 sm:pt-6 border-t border-white/10">
+                <div className="relative w-10 h-10 sm:w-12 sm:h-12 rounded-full overflow-hidden ring-2 ring-white/10 group-hover:ring-primary/50 transition-all flex-shrink-0">
                   <Image
                     src={testimonial.avatar || '/placeholder-avatar.jpg'}
                     alt={testimonial.name}
@@ -100,18 +100,18 @@ export default function TestimonialsSection({ data }: TestimonialsSectionProps) 
                     className="object-cover"
                   />
                 </div>
-                <div>
-                  <div className="font-bold text-white">
+                <div className="min-w-0">
+                  <div className="font-bold text-sm sm:text-base text-white truncate">
                     {testimonial.name}
                   </div>
-                  <div className="text-sm text-gray-400">
+                  <div className="text-xs sm:text-sm text-gray-400 truncate">
                     {testimonial.position}
                   </div>
                 </div>
               </div>
 
               {/* Quote Icon Background */}
-              <div className="absolute top-6 right-6 text-6xl font-serif opacity-10 text-white pointer-events-none">
+              <div className="absolute top-4 right-4 sm:top-6 sm:right-6 text-4xl sm:text-5xl md:text-6xl font-serif opacity-10 text-white pointer-events-none">
                 "
               </div>
             </motion.div>

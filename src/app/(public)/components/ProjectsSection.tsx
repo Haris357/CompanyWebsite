@@ -31,7 +31,7 @@ export default function ProjectsSection({
   const displayProjects = filteredProjects.slice(0, 4);
 
   return (
-    <section ref={ref} className="py-20 relative overflow-hidden" style={{ background: 'var(--background-color)' }}>
+    <section ref={ref} className="py-12 sm:py-16 md:py-20 relative overflow-hidden" style={{ background: 'var(--background-color)' }}>
       {/* Background Elements */}
       <div className="absolute inset-0 grid-bg opacity-5" />
       <motion.div
@@ -60,7 +60,7 @@ export default function ProjectsSection({
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.1 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-bold mb-6"
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 px-4 sm:px-0"
             style={{ color: 'var(--text-color)' }}
           >
             {title}
@@ -70,7 +70,7 @@ export default function ProjectsSection({
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="text-lg md:text-xl max-w-3xl mx-auto"
+            className="text-base sm:text-lg md:text-xl max-w-3xl mx-auto px-4 sm:px-0"
             style={{ color: 'var(--text-color)' }}
           >
             {subtitle}
@@ -86,8 +86,7 @@ export default function ProjectsSection({
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.4 }}
-                className="lg:col-span-6 group relative overflow-hidden rounded-3xl cursor-pointer"
-                style={{ height: '500px' }}
+                className="lg:col-span-6 group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px]"
               >
                 <div className="glass h-full relative overflow-hidden">
                   {displayProjects[0] && (
@@ -101,11 +100,11 @@ export default function ProjectsSection({
                       {/* Dark overlay */}
                       <div className="absolute inset-0 bg-black/40" />
                       {/* Project name */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
                           {displayProjects[0].title}
                         </h3>
-                        <p className="text-sm text-white/80 mt-2">
+                        <p className="text-xs sm:text-sm text-white/80 mt-1 sm:mt-2">
                           {displayProjects[0].category}
                         </p>
                       </div>
@@ -118,8 +117,7 @@ export default function ProjectsSection({
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.5 }}
-                className="lg:col-span-4 group relative overflow-hidden rounded-3xl cursor-pointer"
-                style={{ height: '500px' }}
+                className="lg:col-span-4 group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px]"
               >
                 <div className="glass h-full relative overflow-hidden">
                   {displayProjects[1] && (
@@ -133,11 +131,11 @@ export default function ProjectsSection({
                       {/* Dark overlay */}
                       <div className="absolute inset-0 bg-black/40" />
                       {/* Project name */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
                           {displayProjects[1].title}
                         </h3>
-                        <p className="text-sm text-white/80 mt-2">
+                        <p className="text-xs sm:text-sm text-white/80 mt-1 sm:mt-2">
                           {displayProjects[1].category}
                         </p>
                       </div>
@@ -153,8 +151,7 @@ export default function ProjectsSection({
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.6 }}
-                className="lg:col-span-4 group relative overflow-hidden rounded-3xl cursor-pointer"
-                style={{ height: '500px' }}
+                className="lg:col-span-4 group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px]"
               >
                 <div className="glass h-full relative overflow-hidden">
                   {displayProjects[2] && (
@@ -168,11 +165,11 @@ export default function ProjectsSection({
                       {/* Dark overlay */}
                       <div className="absolute inset-0 bg-black/40" />
                       {/* Project name */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
                           {displayProjects[2].title}
                         </h3>
-                        <p className="text-sm text-white/80 mt-2">
+                        <p className="text-xs sm:text-sm text-white/80 mt-1 sm:mt-2">
                           {displayProjects[2].category}
                         </p>
                       </div>
@@ -185,8 +182,7 @@ export default function ProjectsSection({
                 initial={{ opacity: 0, y: 30 }}
                 animate={isInView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.6, delay: 0.7 }}
-                className="lg:col-span-6 group relative overflow-hidden rounded-3xl cursor-pointer"
-                style={{ height: '500px' }}
+                className="lg:col-span-6 group relative overflow-hidden rounded-2xl sm:rounded-3xl cursor-pointer h-[280px] sm:h-[350px] md:h-[400px] lg:h-[450px] xl:h-[500px]"
               >
                 <div className="glass h-full relative overflow-hidden">
                   {displayProjects[3] && (
@@ -200,11 +196,11 @@ export default function ProjectsSection({
                       {/* Dark overlay */}
                       <div className="absolute inset-0 bg-black/40" />
                       {/* Project name */}
-                      <div className="absolute bottom-0 left-0 right-0 p-8">
-                        <h3 className="text-2xl md:text-3xl font-bold text-white">
+                      <div className="absolute bottom-0 left-0 right-0 p-4 sm:p-6 md:p-8">
+                        <h3 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white">
                           {displayProjects[3].title}
                         </h3>
-                        <p className="text-sm text-white/80 mt-2">
+                        <p className="text-xs sm:text-sm text-white/80 mt-1 sm:mt-2">
                           {displayProjects[3].category}
                         </p>
                       </div>
