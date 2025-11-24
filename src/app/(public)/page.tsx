@@ -5,7 +5,7 @@ import {
   COLLECTIONS,
   type HeroSection as HeroType,
   type ServicesSection as ServicesType,
-  type ProjectsSection,
+  type ProjectsSection as ProjectsSectionType,
   type Project,
   type TestimonialsSection as TestimonialsType,
   type AboutSection as AboutType,
@@ -41,7 +41,7 @@ export default function HomePage() {
     COLLECTIONS.SERVICES,
     'main'
   );
-  const { data: projectSection } = useDocument<ProjectsSection>(
+  const { data: projectSection } = useDocument<ProjectsSectionType>(
     COLLECTIONS.PROJECT_SECTION,
     'main'
   );

@@ -25,6 +25,9 @@ export default function AdminModal({
   footer,
   maxWidth = 'md'
 }: AdminModalProps) {
+  // Map 'xs' to 'sm' since MUI Joy ModalDialog doesn't support 'xs'
+  const modalSize = maxWidth === 'xs' ? 'sm' : maxWidth;
+
   return (
     <Modal
       open={isOpen}
@@ -35,7 +38,7 @@ export default function AdminModal({
     >
       <ModalDialog
         variant="outlined"
-        size={maxWidth}
+        size={modalSize}
         sx={{
           maxHeight: '90vh',
           overflow: 'hidden',

@@ -8,7 +8,8 @@
       "Bash(del check-nav-data.js)",
       "Bash(ls:*)",
       "Bash(find:*)",
-      "Bash(awk:*)"
+      "Bash(awk:*)",
+      "Bash(npm run build:*)"
     ],
     "deny": [],
     "ask": []

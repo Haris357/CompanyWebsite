@@ -56,7 +56,7 @@ async function createAdminUser() {
     const userDocRef = db.collection('users').doc(userRecord.uid);
     const userDoc = await userDocRef.get();
 
-    if (userDoc.exists()) {
+    if (userDoc.exists) {
       console.log('⚠️  User document already exists in Firestore');
       console.log('   Updating with admin role...\n');
     } else {

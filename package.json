@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "next build --turbopack",
+    "build": "next build",
     "start": "next start",
     "init-firestore": "tsx scripts/init-firestore.ts",
     "init-theme": "tsx scripts/init-theme.ts",

@@ -1,12 +1,12 @@
 'use client';
 
 import { useDocument, useCollection } from '@/hooks/useFirestore';
-import { COLLECTIONS, type ProjectsSection, type Project } from '@/types';
+import { COLLECTIONS, type ProjectsSection as ProjectsSectionType, type Project } from '@/types';
 import { orderBy } from 'firebase/firestore';
 import ProjectsSection from '../components/ProjectsSection';
 
 export default function ProjectsPage() {
-  const { data: projectSection, loading: sectionLoading } = useDocument<ProjectsSection>(
+  const { data: projectSection, loading: sectionLoading } = useDocument<ProjectsSectionType>(
     COLLECTIONS.PROJECT_SECTION,
     'main'
   );

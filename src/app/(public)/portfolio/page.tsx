@@ -3,7 +3,7 @@
 import { useDocument, useCollection } from '@/hooks/useFirestore';
 import {
   COLLECTIONS,
-  type ProjectsSection,
+  type ProjectsSection as ProjectsSectionType,
   type Project,
 } from '@/types';
 import ProjectsSection from '../components/ProjectsSection';
@@ -12,7 +12,7 @@ import { orderBy } from 'firebase/firestore';
 
 export default function PortfolioPage() {
   const { data: projectSection, loading: sectionLoading } =
-    useDocument<ProjectsSection>(COLLECTIONS.PROJECT_SECTION, 'main');
+    useDocument<ProjectsSectionType>(COLLECTIONS.PROJECT_SECTION, 'main');
 
   const { data: projects, loading: projectsLoading } = useCollection<Project>(
     COLLECTIONS.PROJECTS,
