@@ -35,6 +35,15 @@ service cloud.firestore {
       ];
     }
 
+    // Admin-only read access for contact submissions and newsletter subscriptions
+    match /contactSubmissions/{document=**} {
+      allow read: if isAdmin();
+    }
+
+    match /newsletterSubscriptions/{document=**} {
+      allow read: if isAdmin();
+    }
+
     // Users collection - read own data, only admins can write
     match /users/{userId} {
       allow read: if isAuthenticated() && request.auth.uid == userId;
