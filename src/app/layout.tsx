@@ -11,18 +11,19 @@ const inter = Inter({
   fallback: ["Inter Placeholder", "sans-serif"],
 });
 
-// Static metadata for build (will be updated client-side)
 export const metadata: Metadata = {
-  title: "Company Website",
-  description: "A fully customizable company showcase website",
-  // Note: Dynamic metadata will be handled client-side via useEffect
+  title: "Kubixx Tech",
+  description: "Kubixx Tech bring future closer",
+  icons: {
+    icon: "/favicon.png",
+  },
 };
 
 export default function RootLayout({
   children,
-}: Readonly<{
+}: {
   children: React.ReactNode;
-}>) {
+}) {
   return (
     <html lang="en" className={inter.variable}>
       <body className={`${inter.className} antialiased`}>

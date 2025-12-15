@@ -4,7 +4,7 @@
  */
 
 export const siteConfig = {
-  name: 'Company Website',
+  name: 'Kubixx.Tech',
   description: 'A fully customizable company showcase website',
   url: process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000',
 
@@ -70,7 +70,7 @@ export const siteConfig = {
 
   // SEO defaults
   seo: {
-    defaultTitle: 'Company Website',
+    defaultTitle: 'Kubixx Tech',
     defaultDescription: 'A fully customizable company showcase website',
     titleTemplate: '%s | Company Website',
     twitterHandle: '@company',
